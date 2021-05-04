@@ -5,8 +5,8 @@ export default function HexInput(props) {
   return <Input
     type={ 'number' }
     hint={ (v) => {
-      if (v > (2 << 15) - 1) return 'Value too large!'
-      if (v < 0) return 'Value must be greater than 0!'
+      if (v < 0) return 'Value must be a number!'
+      if (v > 255) return 'Value too large!'
       return true
     } }
     onFocus={ (e) => {
@@ -17,10 +17,12 @@ export default function HexInput(props) {
         )
       }
     } }
-    checkValidity={ (v) => v < (2 << 15) && v >= 0 }
+    checkValidity={ (v) => v < 256 && v >= 0 }
     serialize={ (v) => {
+      if (isNaN(v)) return '0x'
+
       try {
-        return '0x' + v.toString(16).toUpperCase()
+        return '0x' + (v.toString(16).toUpperCase().padStart(2, '0'))
       } catch (e) {
         return '0x'
       }
