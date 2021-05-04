@@ -12,13 +12,10 @@ module.exports = {
     client
       .connectRTUBuffered(path, {
         baudRate: 115200,
-        // parity: 'even',
         dataBits: 8,
         stopBits: 1,
       })
-      .then(() => {
-        resolve(client)
-      })
+      .then(() => resolve(client))
       .catch(reject)
   },
   writeRegister: (address, value) => client.writeRegister(address, value),
