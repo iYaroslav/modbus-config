@@ -1,7 +1,7 @@
 {
   "name": "modbus",
   "title": "Modbus",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "BSD",
   "private": true,
   "homepage": "./",
